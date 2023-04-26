@@ -1,2 +1,3 @@
 Q:\C语言实战篇\植物大战僵尸\植物大战僵尸\x64\Debug\植物大战僵尸.exe
 D:\Aa1杰啊杰\C\植物大战僵尸\植物大战僵尸\x64\Debug\植物大战僵尸.exe
+D:\Github\Tortoise Git Date\PVZ\date\x64\Debug\植物大战僵尸.exe

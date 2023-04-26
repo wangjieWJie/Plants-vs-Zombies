@@ -178,36 +178,3 @@ void UpdateWindow()
 	EndBatchDraw();   //结束双缓冲，把内存中的内容一次性打印到屏幕上去
 }
 ////;
-
-
-
-int main(){
-
-	int a;       //整形 ,证书  4个字节  1000000000000000000000000001
-
-	long ;      //  长整形  
-
-	long long  ;
-	
-	short ;   //duanzhengxin 
-	
-	float ;   //浮点型  ， 两位
-
-	double ;    //双精度浮点型   
-
-	unsigned int ;  //无符号位 
-
-	register long ;    //寄存器  内存   CPU   栈溢出
-	              //内存
-
-
-
-
-	//scanf("%c
-
-
-
-
-
-return 0;
-}
