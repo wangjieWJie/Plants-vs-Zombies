@@ -129,3 +129,10 @@ google-services.json
 *.ipch
 *.vsidx
 *.lock
+
+# 看这几个文件夹不顺眼，就屏蔽了
+/新版PVZ/x64
+/date/x64
+/date/测试图
+/date/预选图片
+
