@@ -1,9 +1,2 @@
 PCT/card/card_0.png
 PCT/card/card_1.png
-PCT/card/card_2.png
-PCT/card/card_3.png
-PCT/card/card_4.png
-PCT/card/card_5.png
-PCT/card/card_6.png
-PCT/card/card_7.png
-PCT/card/card_8.png

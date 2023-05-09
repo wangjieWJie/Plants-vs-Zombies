@@ -107,8 +107,8 @@ void UserClick()
 	static int status = 0;   //因为鼠标移动过程中要不断调用这个函数，所以为了程序能快速运行，这里的status（状态）用静态变量。
 
 
-	peekmessage(&msg);  //判断有没有消息（鼠标点击或者移动等等），有消息返回真，没有消息返回假
-	//getmessage      与之相似的还有getmessge,不过getmessaeg是读取消息，如果没有消息，程序救护卡住，影响用户体验
+	//peekmessage(&msg);  //判断有没有消息（鼠标点击或者移动等等），有消息返回真，没有消息返回假
+	//getmessage      与之相似的还有getmessge,不过getmessaeg是读取消息，如果没有消息，程序救会卡住，影响用户体验
 
 	if (peekmessage(&msg))
 	{
