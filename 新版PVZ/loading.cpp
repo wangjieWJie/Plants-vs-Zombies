@@ -1,7 +1,7 @@
 #include"head.h"
 const int num_cards = 8;
 const int num_use_cards = 2;
-const int MAX_plant_image = 25;
+const int MAX_plant_image = 17;
 
 IMAGE map;            //刚开始我为了使用方便，用的是一个 IMAGE* 指针，结果没初始化，郁闷了一下午，被大佬吵了一顿
 IMAGE Bar;            //我确实推崇定义伴随初始化一起，但是这个指针我是真的不知道要给他初始化一个什么东西，所以就改用了变量表示
@@ -64,7 +64,7 @@ void load_plants()
 
 	std::ifstream plant_i("plant_name.txt");             //开始读取刚刚写完的植物图片文件地址名称
 
-	for (int i = 0; i < MAX_plant_image; i++)
+	for (int i = 0; i < num_use_cards; i++)
 	{
 		for (int j = 0; j <= MAX_plant_image; j++)
 		{
@@ -74,7 +74,6 @@ void load_plants()
 			if(test_open.good())                                    //能少写三个函数(一个算有几个图片的、一个函数当前要加载的植物的序号告诉这个函
 			{														//数(这不算一个函数)、一个函数将这个函数运行好几次直到全部植物都运行过了）
 				loadimage(&plant_cards[i][j], save_name);     
-				putimage(500, 430, &plant_cards[i][j]);
 			}
 		}
 	}
@@ -97,7 +96,7 @@ void Put_image()
 	if (curPlant != -1 && curPlant < num_use_cards)
 	{
 //		putimage(point.x - 20, point.y - 30, &plant_cards[curPlant][1],SRCPAINT);
-		newPNG(NULL, point.x - 20, point.y - 30, &plant_cards[curPlant][1], BLACK);
+		newPNG(NULL, point.x - 20, point.y - 30, &plant_cards[curPlant][0], BLACK);
 	}
 
 

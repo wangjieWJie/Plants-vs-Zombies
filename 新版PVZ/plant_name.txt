@@ -15,14 +15,6 @@ PCT/plant/0/13.png
 PCT/plant/0/14.png
 PCT/plant/0/15.png
 PCT/plant/0/16.png
-PCT/plant/0/17.png
-PCT/plant/0/18.png
-PCT/plant/0/19.png
-PCT/plant/0/20.png
-PCT/plant/0/21.png
-PCT/plant/0/22.png
-PCT/plant/0/23.png
-PCT/plant/0/24.png
 PCT/plant/1/0.png
 PCT/plant/1/1.png
 PCT/plant/1/2.png
@@ -40,11 +32,3 @@ PCT/plant/1/13.png
 PCT/plant/1/14.png
 PCT/plant/1/15.png
 PCT/plant/1/16.png
-PCT/plant/1/17.png
-PCT/plant/1/18.png
-PCT/plant/1/19.png
-PCT/plant/1/20.png
-PCT/plant/1/21.png
-PCT/plant/1/22.png
-PCT/plant/1/23.png
-PCT/plant/1/24.png
