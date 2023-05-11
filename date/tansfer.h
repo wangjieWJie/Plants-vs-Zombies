@@ -13,7 +13,7 @@
 #include<stdio.h>
 #include<graphics.h>    //easy_X图形库
 
-
+void _putimagePNG(int  picture_x, int picture_y, IMAGE* picture);
 
 #define WIN_WIDTH  900   //窗口宽度
 #define WIN_HEIGHT 600   //窗口高度

@@ -169,7 +169,7 @@ void UpdateWindow()
 	if (curPlant > 0)
 	{
 		//printf("其实我在");
-		putimage(curX - 25,curY - 30, ImgPlants[curPlant][0]);     //因为光标在植物的左上角，所以把X，Y减去半个图片的量就使光标指在植物中间了
+		_putimagePNG(curX - 25,curY - 30, ImgPlants[curPlant][0]);     //因为光标在植物的左上角，所以把X，Y减去半个图片的量就使光标指在植物中间了
 	}
 
 

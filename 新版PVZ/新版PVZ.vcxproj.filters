@@ -18,14 +18,14 @@
     <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="function.cpp">
+    <ClCompile Include="loading.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="head.h">
       <Filter>头文件</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="resource.re" />
+    <ClCompile Include="PNG.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

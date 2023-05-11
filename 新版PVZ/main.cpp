@@ -5,13 +5,13 @@ int main()
 	Initmap();          // 初始化一个关卡地图界面
 	load_cards();
 	load_plants();
-	Put_image();
 
 	while(1)
 	{
 
 		click_act();
-		//update_windows();
+//		update_windows();
+	    Put_image();
 
 
 	}
