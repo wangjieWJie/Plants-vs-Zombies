@@ -5,13 +5,26 @@ const int MAX_plant_image = 17;
 
 IMAGE map;            //刚开始我为了使用方便，用的是一个 IMAGE* 指针，结果没初始化，郁闷了一下午，被大佬吵了一顿
 IMAGE Bar;            //我确实推崇定义伴随初始化一起，但是这个指针我是真的不知道要给他初始化一个什么东西，所以就改用了变量表示
-IMAGE cards[num_cards]{};
-char save_name[60]{};
-IMAGE plant_cards[num_cards][25]{};
+IMAGE cards[num_cards]{};               //植物的卡片图片
+char save_name[60]{};                   //暂时存储各种地址名称的字符串
+IMAGE plant_cards[num_cards][25]{};     //植物的所有动态图片
+int num_of_plant_image[num_cards][2]{}; //植物的动态图片有几张，（在加载时顺便算出来的）
 ExMessage point;     //ExMessage 是easyX图形库里定义的一个结构体，里面有鼠标按下、移动、松开及鼠标指针当前位置的变量
 int curX = point.x;
-int curY = point.y;
-int curPlant = -1;
+int curY = point.y;           
+int curPlant = -1;           //当前的植物的序号
+const int p_w = 75;          //plant_width
+const int P_h = 75;          //plant_high
+struct place                 //概念网格
+{
+	int u1 = 155, d1 = 255, r1 = 980, l1 = 100, dis1 = (r1 - l1) / 8;
+	int u2 = 290, d2 = 390, r2 = 1000, l2 = 80, dis2 = (r2 - l2) / 8;                       //抱歉，写反了，写个负号弥补一下
+	int u3 = 420, d3 = 530, r3 = 1035, l3 = 40, dis3 = (r3 - l3) / 8;
+	int u4 = 555, d4 = 666, r4 = 1050, l4 = 30, dis4 = (r4 - l4) / 8;
+	int x;             //可以放植物的坑位的二元序号
+	int y;             //左上角为原点
+}pl;
+int xunhuankonghzi = 0;
 
 void Initmap()
 {
@@ -72,39 +85,14 @@ void load_plants()
 
 			std::ifstream test_open(save_name);                     //判断文件是否存在(本来是想写一个判断有几个图片的函数的，但没想到直接这么写
 			if(test_open.good())                                    //能少写三个函数(一个算有几个图片的、一个函数当前要加载的植物的序号告诉这个函
-			{														//数(这不算一个函数)、一个函数将这个函数运行好几次直到全部植物都运行过了）
+			{													//数(这不算一个函数)、一个函数将这个函数运行好几次直到全部植物都运行过了）
+				num_of_plant_image[i][0] += 1;
 				loadimage(&plant_cards[i][j], save_name);     
 			}
 		}
 	}
 	plant_i.close();
 }
-void Put_image()
-{
-
-	//开始准备绘图
-	BeginBatchDraw();		//批量绘图 暂不输出           //开始缓冲，即把下面的内容先不显示在屏幕上，而是先缓存在内存中
-	putimage(0, 0, &map);
-	putimage(280, 0, &Bar);
-	for(int i=0;i<num_use_cards;i++)
-	{
-		//std::cout << "正在加载卡片文件 :\n" << save_name << std::endl;
-		putimage(358 + 50 * i, 8, &cards[i]);
-	}
-
-
-	if (curPlant != -1 && curPlant < num_use_cards)
-	{
-//		putimage(point.x - 20, point.y - 30, &plant_cards[curPlant][1],SRCPAINT);
-		newPNG(NULL, point.x - 20, point.y - 30, &plant_cards[curPlant][0], BLACK);
-	}
-
-
-
-
-	EndBatchDraw();         //结束批量绘图模式，将中间的图片一次性绘制出来                //结束双缓冲，把内存中的内容一次性打印到屏幕上去
-}
-
 
 
 void click_act()
@@ -121,13 +109,96 @@ void click_act()
 				std::cout << curPlant << std::endl;
 			}
 		}
+		if (point.message == WM_LBUTTONDOWN && curPlant != -1 && curPlant < num_use_cards)                     //如果选中了一个植物并且又点击了一次鼠标
+		{
+			if (curPlant != -1 && point.x >= pl.l1 && point.x <= pl.r1 && point.y >= pl.u1 && point.y <= pl.d1)          //从上往下第一行
+			{
+				pl.x = 1;
+				pl.y = point.x / pl.dis1;
+				std::cout << pl.x << " and " << pl.y << std::endl;
+			}
+			else if (curPlant != -1 && point.x >= pl.l2 && point.x <= pl.r2 && point.y >= pl.u2 && point.y <= pl.d2)      //第二行
+			{
+				pl.x = 2;
+				pl.y = point.x / pl.dis2;
+				std::cout << pl.x << " and " << pl.y << std::endl;
+			}
+			else if (curPlant != -1 && point.x >= pl.l3 && point.x <= pl.r3 && point.y >= pl.u3 && point.y <= pl.d3)      //第三行
+			{
+				pl.x = 3;
+				pl.y = point.x / pl.dis3;
+				std::cout << pl.x << " and " << pl.y << std::endl;
+			}
+			else if (curPlant != -1 && point.x >= pl.l4 && point.x <= pl.r4 && point.y >= pl.u4 && point.y <= pl.d4)      //第四行
+			{
+				pl.x = 4;
+				pl.y = point.x / pl.dis4;
+				std::cout << pl.x << " and " << pl.y << std::endl;
+			}
+		}
+	}
+
+}
 
 
+
+void Put_image()
+{
+
+	//开始准备绘图
+	BeginBatchDraw();		//批量绘图 暂不输出           //开始缓冲，即把下面的内容先不显示在屏幕上，而是先缓存在内存中
+	putimage(0, 0, &map);
+	putimage(280, 0, &Bar);
+	for (int i = 0; i < num_use_cards; i++)
+	{
+		//std::cout << "正在加载卡片文件 :\n" << save_name << std::endl;
+		putimage(358 + 50 * i, 8, &cards[i]);
+	}
+
+
+	if (curPlant != -1 && curPlant < num_use_cards)                                    //被选中的植物开始跟着鼠标走
+	{
+		//putimage(500, 400, &plant_cards[curPlant][0]);
+		newPNG(NULL, point.x - 40, point.y - 60, &plant_cards[curPlant][0], BLACK);
+	}
+	if (curPlant != -1 && curPlant < num_use_cards && pl.x != 0)                      //将选中的植物放在对应的坑位里
+	{
+		int p_mid_x = 0;
+		int p_mid_y = 0;
+
+		switch(pl.y)                      
+		{
+		case 1:
+			p_mid_x = pl.l1 + pl.dis1 * pl.x / 2 - p_w;
+			p_mid_y = pl.u1 + (pl.u1 + pl.d1) / 2 - P_h;
+			break;
+		case 2:
+			p_mid_x = pl.l2 + pl.dis2 * pl.x / 2 - p_w;
+			p_mid_y = pl.u2 + (pl.u2 + pl.d2) / 2 - P_h;
+			break;
+		case 3:
+			p_mid_x = pl.l3 + pl.dis3 * pl.x / 2 - p_w;
+			p_mid_y = pl.u3 + (pl.u3 + pl.d3) / 2 - P_h;
+			break;
+		case 4:
+			p_mid_x = pl.l4 + pl.dis4 * pl.x / 2 - p_w;
+			p_mid_y = pl.u4 + (pl.u4 + pl.d4) / 2 - P_h;
+			break;
+		}
+		newPNG(NULL, p_mid_x, p_mid_y, &plant_cards[curPlant][0], BLACK);               //这个样子做不行的理由：
+		//while(num_of_plant_image[curPlant][0]--)                                      //随着点击，坑位是会变化的，所以这张图片会随着坑位的变化而变化
+		//{                                                                             //无法将图片从拖动状态放下来
+		//	int i = 0;
+		//	newPNG(NULL, p_mid_x, p_mid_y, &plant_cards[curPlant][i],BLACK);
+		//	i++;
+		//}
 	}
 
 
 
+	EndBatchDraw();         //结束批量绘图模式，将中间的图片一次性绘制出来                //结束双缓冲，把内存中的内容一次性打印到屏幕上去
 }
+
 
 
 //
@@ -137,8 +208,8 @@ void click_act()
 //	_putimagePNG(point.x, point.y, &plant_cards[num][1]);
 //	EndBatchDraw();
 //}
-
-
+                                        //如果把这两个函数放进主函数的循环中去，那么他们就会随着鼠标位置的移动而不断地输出图片，就会导致图片满屏
+                                        //所以一定要让会动的图片和不会动的图片一起刷新，这样就能保证新刷出来的图片不管位置在哪都能够被背景图片覆盖
 //
 //void update_windows()
 //{

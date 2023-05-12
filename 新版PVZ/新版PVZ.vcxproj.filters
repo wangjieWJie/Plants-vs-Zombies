@@ -24,7 +24,7 @@
     <ClCompile Include="head.h">
       <Filter>头文件</Filter>
     </ClCompile>
-    <ClCompile Include="PNG.cpp">
+    <ClCompile Include="newPNG.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

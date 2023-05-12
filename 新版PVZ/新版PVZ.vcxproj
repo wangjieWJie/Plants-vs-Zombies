@@ -131,7 +131,7 @@
     <ClCompile Include="loading.cpp" />
     <ClCompile Include="head.h" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="PNG.cpp" />
+    <ClCompile Include="newPNG.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
