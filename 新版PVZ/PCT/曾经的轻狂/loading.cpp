@@ -17,13 +17,10 @@ const int p_w = 75;          //plant_width
 const int P_h = 75;          //plant_high
 struct place                 //概念网格
 {
-	int l = 175; int r = 995;
-	int dist = 82;
-	int u1 = 95, d1 = 205;
-	int u2 = 205, d2 = 305;
-	int u3 = 305, d3 = 405;
-	int u4 = 405, d4 = 500;
-	int u5 = 500, d5 = 595;
+	float u1 = 160, d1 = 250, r1 = 980, l1 = 100, dis1 = (r1 - l1) / 8;
+	float u2 = 295, d2 = 390, r2 = 1000, l2 = 92, dis2 = (r2 - l2) / 8;
+	float u3 = 430, d3 = 520, r3 = 1030, l3 = 53, dis3 = (r3 - l3) / 8;
+	float u4 = 570, d4 = 660, r4 = 1040, l4 = 45, dis4 = (r4 - l4) / 8;
 	int x{};             //可以放植物的坑位的二元序号
 	int y{};             //左上角为原点
 }pl;
@@ -31,10 +28,10 @@ int xunhuankonghzi = 0;
 
 void Initmap()
 {
-	initgraph(1080, 675, 1);    //创建游戏（图形）窗口
+	initgraph(1080, 828, 1);    //创建游戏（图形）窗口
 
 	std::cout << "正在初始化地图界面...\n" << "正在加载图片...\n";
-	loadimage(&map, "PCT/map.png", 1500, 675);           //加载背景图片
+	loadimage(&map, "PCT/map.png", 1080, 828);           //加载背景图片
 	std::cout << "地图背景加载成功！！！\n";
 	loadimage(&Bar, "PCT/bar.png",500,80);        
 }
@@ -116,39 +113,33 @@ void click_act()
 		//2222222222222222222222222222222222222222222222222222222222222222222222222222222
 		if (point.message == WM_LBUTTONDOWN && curPlant != -1 && curPlant < num_use_cards)                     //如果选中了一个植物并且又点击了一次鼠标
 		{
-			if (curPlant != -1 && point.x >= pl.l && point.x <= pl.r && point.y >= pl.u1 && point.y <= pl.d1)          //从上往下第一行
+			if (curPlant != -1 && point.x >= pl.l1 && point.x <= pl.r1 && point.y >= pl.u1 && point.y <= pl.d1)          //从上往下第一行
 			{
 				pl.y = 1;
-				pl.x = (point.x - pl.l+pl.dist) / pl.dist;
-				std::cout << pl.x << " and " << pl.y << "   pl.dis1 :" << pl.dist << "   上 ：" << pl.u1 << " 下 ：" << pl.d1 << " 左  :" << pl.l << " 右 ：" << pl.r << std::endl;
+				pl.x = point.x / pl.dis1;
+				std::cout << pl.x << " and " << pl.y << "   pl.dis1 :" << pl.dis1 << "   上 ：" << pl.u1 << " 下 ：" << pl.d1 << " 左  :" << pl.l1 << " 右 ：" << pl.r1 << std::endl;
 			}
-			else if (curPlant != -1 && point.x >= pl.l && point.x <= pl.r && point.y >= pl.u2 && point.y <= pl.d2)      //第二行
+			else if (curPlant != -1 && point.x >= pl.l2 && point.x <= pl.r2 && point.y >= pl.u2 && point.y <= pl.d2)      //第二行
 			{
 				pl.y = 2;
-				pl.x = (point.x - pl.l + pl.dist) / pl.dist;
+				pl.x = point.x / pl.dis2;
 				std::cout << pl.x << " and " << pl.y << std::endl;
 			}
-			else if (curPlant != -1 && point.x >= pl.l && point.x <= pl.r && point.y >= pl.u3 && point.y <= pl.d3)      //第三行
+			else if (curPlant != -1 && point.x >= pl.l3 && point.x <= pl.r3 && point.y >= pl.u3 && point.y <= pl.d3)      //第三行
 			{
 				pl.y = 3;
-				pl.x = (point.x - pl.l + pl.dist) / pl.dist;
+				pl.x = point.x / pl.dis3;
 				std::cout << pl.x << " and " << pl.y << std::endl;
 			}
-			else if (curPlant != -1 && point.x >= pl.l && point.x <= pl.r && point.y >= pl.u4 && point.y <= pl.d4)      //第四行
+			else if (curPlant != -1 && point.x >= pl.l4 && point.x <= pl.r4 && point.y >= pl.u4 && point.y <= pl.d4)      //第四行
 			{
 				pl.y = 4;
-				pl.x = (point.x - pl.l + pl.dist) / pl.dist;
+				pl.x = point.x / pl.dis4;
 				std::cout << pl.x << " and " << pl.y << std::endl;
 			}
-			else if (curPlant != -1 && point.x >= pl.l && point.x <= pl.r && point.y >= pl.u5 && point.y <= pl.d5)      //第四行
-			{
-				pl.y = 5;
-				pl.x = (point.x - pl.l + pl.dist) / pl.dist;
-				std::cout << pl.x << " and " << pl.y << std::endl;
-			}
-
 		}
 	}
+
 }
 
 
@@ -158,7 +149,7 @@ void Put_image()
 
 	//开始准备绘图
 	BeginBatchDraw();		//批量绘图 暂不输出           //开始缓冲，即把下面的内容先不显示在屏幕上，而是先缓存在内存中
-	putimage(-80, 0, &map);
+	putimage(0, 0, &map);
 	putimage(280, 0, &Bar);
 	for (int i = 0; i < num_use_cards; i++)
 	{
@@ -174,32 +165,30 @@ void Put_image()
 	}
 	if (curPlant != -1 && curPlant < num_use_cards && pl.x != 0)                      //将选中的植物放在对应的坑位里
 	{
-		int p_mid_x = pl.l + pl.dist * (pl.x - 1) + pl.dist / 2 - 41;		
+		int p_mid_x = 0;
 		int p_mid_y = 0;
 
 		switch(pl.y)                      
 		{
 		case 1:
-			p_mid_y = pl.u1 - (pl.u1 - pl.d1) / 2 - 30;
+			p_mid_x = pl.l1 + pl.dis1 * (pl.x - 1) + pl.dis1 / 2 - p_w;
+			p_mid_y = pl.u1 - (pl.u1 - pl.d1) / 2 - P_h;
 			//std::cout << pl.l1 << "左" << pl.r1 << "右" << pl.u1 << "上" << pl.d1 << "下" << "   " << p_mid_x << "," << p_mid_y << std::endl;
 			break;
 		case 2:
-			p_mid_y = pl.u2 - (pl.u2 - pl.d2) / 2 - 30;
+			p_mid_x = pl.l2 + pl.dis2 * (pl.x - 1) + pl.dis2 / 2 - p_w;
+			p_mid_y = pl.u2 - (pl.u2 - pl.d2) / 2 - P_h;
 			//std::cout << p_mid_x << "," << p_mid_y << std::endl;
 			break;
 		case 3:
-			p_mid_y = pl.u3 - (pl.u3 - pl.d3) / 2 - 30;
+			p_mid_x = pl.l3 + pl.dis3 * (pl.x - 1) + pl.dis3 / 2 - p_w;
+			p_mid_y = pl.u3 - (pl.u3 - pl.d3) / 2 - P_h;
 			//std::cout << p_mid_x << "," << p_mid_y << std::endl;
 			break;
 		case 4:
-			p_mid_y = pl.u4 - (pl.u4 - pl.d4) / 2 - 30;
+			p_mid_x = pl.l4 + pl.dis4 * (pl.x - 1) + pl.dis4 / 2 - p_w;
+			p_mid_y = pl.u4 - (pl.u4 - pl.d4) / 2 - P_h;
 			//std::cout << p_mid_x << "," << p_mid_y << std::endl;
-			break;
-		case 5:
-			p_mid_y = pl.u5 - (pl.u5 - pl.d5) / 2 - 30;
-			//std::cout << p_mid_x << "," << p_mid_y << std::endl;
-			break;
-		default:
 			break;
 		}
 //		std::cout << p_mid_x << "   " << p_mid_y << std::endl;
