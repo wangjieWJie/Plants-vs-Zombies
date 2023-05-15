@@ -13,14 +13,14 @@ ExMessage point;     //ExMessage 是easyX图形库里定义的一个结构体，里面有鼠标按下
 int curX = point.x;
 int curY = point.y;           
 int curPlant = -1;           //当前的植物的序号
-const int p_w = 75;          //plant_width
-const int P_h = 75;          //plant_high
+const int p_w = -45;          //用于微调植物放置的位置
+const int p_h = -55;          //用于微调植物放置的位置
 struct place                 //概念网格
 {
 	int l = 175; int r = 995;
 	int dist = 82;
 	int u1 = 95, d1 = 205;
-	int u2 = 205, d2 = 305;
+	int u2 = 205, d2 = 305;     //地图每行的长宽高数据
 	int u3 = 305, d3 = 405;
 	int u4 = 405, d4 = 500;
 	int u5 = 500, d5 = 595;
@@ -174,36 +174,38 @@ void Put_image()
 	}
 	if (curPlant != -1 && curPlant < num_use_cards && pl.x != 0)                      //将选中的植物放在对应的坑位里
 	{
-		int p_mid_x = pl.l + pl.dist * (pl.x - 1) + pl.dist / 2 - 41;		
+		int p_mid_x = pl.l + pl.dist * (pl.x - 1) + pl.dist / 2 + p_w;		
 		int p_mid_y = 0;
 
 		switch(pl.y)                      
 		{
 		case 1:
-			p_mid_y = pl.u1 - (pl.u1 - pl.d1) / 2 - 30;
+			p_mid_y = pl.u1 - (pl.u1 - pl.d1) / 2 + p_h;
 			//std::cout << pl.l1 << "左" << pl.r1 << "右" << pl.u1 << "上" << pl.d1 << "下" << "   " << p_mid_x << "," << p_mid_y << std::endl;
 			break;
 		case 2:
-			p_mid_y = pl.u2 - (pl.u2 - pl.d2) / 2 - 30;
+			p_mid_y = pl.u2 - (pl.u2 - pl.d2) / 2 + p_h;
 			//std::cout << p_mid_x << "," << p_mid_y << std::endl;
 			break;
 		case 3:
-			p_mid_y = pl.u3 - (pl.u3 - pl.d3) / 2 - 30;
+			p_mid_y = pl.u3 - (pl.u3 - pl.d3) / 2 + p_h;
 			//std::cout << p_mid_x << "," << p_mid_y << std::endl;
 			break;
 		case 4:
-			p_mid_y = pl.u4 - (pl.u4 - pl.d4) / 2 - 30;
+			p_mid_y = pl.u4 - (pl.u4 - pl.d4) / 2 + p_h;
 			//std::cout << p_mid_x << "," << p_mid_y << std::endl;
 			break;
 		case 5:
-			p_mid_y = pl.u5 - (pl.u5 - pl.d5) / 2 - 30;
+			p_mid_y = pl.u5 - (pl.u5 - pl.d5) / 2 + p_h;
 			//std::cout << p_mid_x << "," << p_mid_y << std::endl;
 			break;
 		default:
 			break;
 		}
 //		std::cout << p_mid_x << "   " << p_mid_y << std::endl;
-		newPNG(NULL, p_mid_x, p_mid_y, &plant_cards[curPlant][0], BLACK);               //这个样子做不行的理由：
+		newPNG(NULL, p_mid_x, p_mid_y, &plant_cards[curPlant][0], BLACK);              
+		
+		//这个样子做不行的理由：
 		//while(num_of_plant_image[curPlant][0]--)                                      //随着点击，坑位是会变化的，所以这张图片会随着坑位的变化而变化
 		//{                                                                             //无法将图片从拖动状态放下来
 		//	int i = 0;
