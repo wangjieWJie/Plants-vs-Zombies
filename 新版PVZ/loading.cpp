@@ -13,8 +13,8 @@ ExMessage point;     //ExMessage 是easyX图形库里定义的一个结构体，里面有鼠标按下
 int curX = point.x;
 int curY = point.y;           
 int curPlant = -1;           //当前的植物的序号
-const int p_w = -45;          //用于微调植物放置的位置
-const int p_h = -55;          //用于微调植物放置的位置
+constexpr int p_w = -45;          //用于微调植物放置的位置
+constexpr int p_h = -55;          //用于微调植物放置的位置
 struct place                 //概念网格
 {
 	int l = 175; int r = 995;
