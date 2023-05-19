@@ -3,6 +3,8 @@ const int num_cards = 8;
 const int num_use_cards = 2;
 const int MAX_plant_image = 17;
 const int ROW = 6, COL = 11;
+const int p_speecd = 200;
+const int a_speced = 800;
 
 IMAGE map;            //刚开始我为了使用方便，用的是一个 IMAGE* 指针，结果没初始化，郁闷了一下午，被大佬吵了一顿
 IMAGE Bar;            //我确实推崇定义伴随初始化一起，但是这个指针我是真的不知道要给他初始化一个什么东西，所以就改用了变量表示
@@ -37,6 +39,9 @@ int note_y[ROW][COL]{};
 int note_curPlant[ROW][COL]{}; //用于记录当前坑位的植物是谁
 int count[ROW][COL]{};          //计数器
 
+IMAGE bin_go{};                //豆子子弹
+IMAGE bin_break{};             //豆子破碎
+
 void Initmap()
 {
 	initgraph(1080, 675, 1);    //创建游戏（图形）窗口
@@ -46,6 +51,8 @@ void Initmap()
 	std::cout << "地图背景加载成功！！！\n";
 	loadimage(&Bar, "PCT/bar.png",500,80);  
 	loadimage(&shovel, "PCT/shovel.png");
+	loadimage(&bin_go, "PCT/bin_go.png");
+	loadimage(&bin_break, "PCT/bin_break");
 }
 
 void load_cards()
@@ -203,7 +210,8 @@ void click_act()
 				else if (curPlant < -1) 
 				{
 					note_plant[pl.y][pl.x] = NULL;           //将这个坑位的植物消除     
-					note[pl.y][pl.x] = 0;                    //标志着这个坑位已经没有植物了                                    
+					note[pl.y][pl.x] = 0;                    //标志着这个坑位已经没有植物了           
+					count[pl.y][pl.x] = 0;					 //将计数器恢复0，免得它一会儿祸害人类（研究了大半天也不知道为什么会有空指针）
 					curPlant = -1;
 					pl.x = -1;
 					pl.y = -1;
@@ -229,7 +237,6 @@ void Put_image()
 	newPNG(NULL, 830, 20, &shovel, BLACK);
 
 
-
 	for (int i = 0; i < ROW; i++)
 	{
 		for (int j = 0; j < COL; j++)
@@ -238,12 +245,13 @@ void Put_image()
 			{				
 				newPNG(NULL, note_x[i][j], note_y[i][j], note_plant[i][j], BLACK);
 
-				if (count[i][j] < 200 * (num_of_plant_image[note_curPlant[i][j]] - 2))
+				if (count[i][j] < p_speecd * (num_of_plant_image[note_curPlant[i][j]] - 2))
 				{
 					count[i][j]++;
-					if (count[i][j] % 200 == 0)                                        //每200次循环更换一张植物照片从而达到缓慢运动的效果
+					if (count[i][j] % p_speecd == 0)                                        //每200次循环更换一张植物照片从而达到缓慢运动的效果
                     {                                                                  //但是不知道是否换个电脑速度就会有所改变
 						note_plant[i][j]++;
+						                                                                                                                            //std::cout << count[i][j] << std::endl;                      //测试时是大功臣，测试完兔死狗烹
 					}
 				}
 				else
@@ -265,7 +273,6 @@ void Put_image()
 		newPNG(NULL, point.x - 20, point.y - 50, &shovel, BLACK);                    //铲子跟着鼠标走
 	}
 
-	//Sleep(0);
 	EndBatchDraw();         //结束批量绘图模式，将中间的图片一次性绘制出来                //结束双缓冲，把内存中的内容一次性打印到屏幕上去
 }
 
