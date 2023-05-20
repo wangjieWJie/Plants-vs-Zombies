@@ -6,6 +6,13 @@ int main()
 	load_cards();
 	load_plants();
 
+	my_load("PCT/zoom/go_3/");
+
+
+
+
+
+
 	while(1)
 	{
 

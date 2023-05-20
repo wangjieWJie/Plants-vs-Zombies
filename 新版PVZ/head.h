@@ -26,6 +26,7 @@
 #include<graphics.h>
 #include<cstring>
 
+using std::string;
 
 void Initmap();           //加载背景图
 void load_cards();        //加载卡片图片
@@ -36,7 +37,9 @@ void Put_image();          //输出上述图片
 void click_act();           //接受鼠标信息并做出相关反应
 void out_plant(int num);       //接受植物序号并加载相关植物图片
 void update_windows();
-
+//以下是 zoom.cpp 中定义的函数
+void my_load(string load_name);
+int num_a_cards(string load_name);
 
 
 

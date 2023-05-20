@@ -132,6 +132,7 @@
     <ClCompile Include="head.h" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="newPNG.cpp" />
+    <ClCompile Include="zoom.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
