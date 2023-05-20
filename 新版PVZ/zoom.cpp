@@ -55,16 +55,16 @@ int num_a_cards(string load_name)
 {
 	string all_of_this = "23";
 	string type_name = ".png";
-	string char_num{};
+	string char_num = "      ";
 	bool make_break = 1;
 
 	std::cout << make_break << std::endl;
 
-	int the_num_a_card{};
+	int the_num_a_card = 0;
 	while (make_break)
 	{
 		std::ofstream this_test;
-		char_num = '0' + the_num_a_card;
+		char_num = '0' + the_num_a_card;                  //用这个办法最多可以转换0~9之内的数，两位数就不行了，所以我们还需要一个整型转换字符串的函数，其中应该还包含一个计算位数的函数（详见 第五章编程题）                           
 		all_of_this = load_name + char_num + type_name;
 		std::cout << all_of_this << std::endl;
 		this_test.open(all_of_this);
