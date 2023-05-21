@@ -40,6 +40,8 @@ void update_windows();
 //以下是 zoom.cpp 中定义的函数
 void my_load(string load_name);
 int num_a_cards(string load_name);
+int wei_shu(int  a);
+string turn_int_into_char(int a);
 
 
 
