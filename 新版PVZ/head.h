@@ -24,7 +24,8 @@
 用good()函数做了可以计算某个图片文件最多有多少张的函数
 其中包含一个计算整数位数和将整数转化为字符串的的函数
 将全局变量的定义挪到了头文件中
-下一步就是做接收一个文件夹名称，然后把里面的照片加载出来的函数
+实现了接受一个文件夹地址名然后将这个文件夹里的图片加载到内存中的函数
+并成功将一个普通僵尸的第三种走路姿势加载到了内存中
 
 */
 #include<iostream>
@@ -44,7 +45,7 @@ void click_act();           //接受鼠标信息并做出相关反应
 void out_plant(int num);       //接受植物序号并加载相关植物图片
 void update_windows();
 //以下是 zoom.cpp 中定义的函数
-void my_load(string load_name);          //接收一个文件夹名称，然后把里面的照片加载出来
+void my_load(IMAGE get_in[],string load_name);          //接收一个文件夹名称，然后把里面的照片加载出来
 int num_a_cards(string load_name);       //计算文件夹中有多少个图片
 int wei_shu(int  a);                     //计算一个整数有几位数
 string turn_int_into_char(int a);        //将一个整数转化为字符串类型
@@ -61,7 +62,8 @@ void newPNG(IMAGE* dstimg, int x, int y, IMAGE* srcimg, UINT transparentcolor); 
 //移动完不能用，还是用声名吧
 
 
-
+extern IMAGE easy_zoom_go3[19];             //使用extern报错是因为使用了{}进行了多次初始化
+extern IMAGE easy_zoom_wait2[25];
 
 
 
