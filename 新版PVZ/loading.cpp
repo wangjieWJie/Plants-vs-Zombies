@@ -15,7 +15,7 @@ IMAGE plant_cards[num_cards][25]{};     //植物的所有动态图片
 int num_of_plant_image[num_cards]{}; //植物的动态图片有几张，（在加载时顺便算出来的）
 ExMessage point;     //ExMessage 是easyX图形库里定义的一个结构体，里面有鼠标按下、移动、松开及鼠标指针当前位置的变量
 int curX = point.x;
-int curY = point.y;           
+int curY = point.y;
 int curPlant = -1;           //当前的植物的序号
 constexpr int p_w = -45;          //用于微调植物放置的位置
 constexpr int p_h = -55;          //用于微调植物放置的位置
@@ -41,6 +41,7 @@ int count[ROW][COL]{};          //计数器
 
 IMAGE bin_go{};                //豆子子弹
 IMAGE bin_break{};             //豆子破碎
+
 
 void Initmap()
 {

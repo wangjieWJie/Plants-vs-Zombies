@@ -1,4 +1,4 @@
-/*
+/*日志：
 基于之前的一点C语言思路，完全自己研究的
 每一个字母都是血汗
 
@@ -18,7 +18,13 @@
 新增加了一个 if 语句，如果坑位没有植物，才能将下一个植物放进去
 增加了铲子的功能，实现了点击、拖动功能，可以将坑位恢复到原先没种过植物的样子（只恢复标志性的标志）
 修复了铲子铲完地之后植物贴图间断性空白（空指针）的问题，原因是计数器未归零（我真该死，非要加一个铲子，废了一下午功夫解决一个bug）
-
+下面是僵尸函数：
+思考了半天，先搞豌豆还是先做僵尸，发现没有僵尸豌豆就不会攻击
+想的比较理想化，想都做成函数，因为以后要添加的东西实在是太多了
+用good()函数做了可以计算某个图片文件最多有多少张的函数
+其中包含一个计算整数位数和将整数转化为字符串的的函数
+将全局变量的定义挪到了头文件中
+下一步就是做接收一个文件夹名称，然后把里面的照片加载出来的函数
 
 */
 #include<iostream>
@@ -38,16 +44,25 @@ void click_act();           //接受鼠标信息并做出相关反应
 void out_plant(int num);       //接受植物序号并加载相关植物图片
 void update_windows();
 //以下是 zoom.cpp 中定义的函数
-void my_load(string load_name);
-int num_a_cards(string load_name);
-int wei_shu(int  a);
-string turn_int_into_char(int a);
+void my_load(string load_name);          //接收一个文件夹名称，然后把里面的照片加载出来
+int num_a_cards(string load_name);       //计算文件夹中有多少个图片
+int wei_shu(int  a);                     //计算一个整数有几位数
+string turn_int_into_char(int a);        //将一个整数转化为字符串类型
 
 
 
 
 //其他一些工具
 void newPNG(IMAGE* dstimg, int x, int y, IMAGE* srcimg, UINT transparentcolor);     //透明化PNG贴图
+
+
+
+//因为源文件不可能只有一个，所以把他们挪到头文件里来了
+//移动完不能用，还是用声名吧
+
+
+
+
 
 
 

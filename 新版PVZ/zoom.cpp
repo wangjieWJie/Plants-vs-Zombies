@@ -15,35 +15,6 @@ void my_load(string load_name)
 {
 	int num_0 = num_a_cards(load_name);                      //计算一个植物的动态照片能有几张
 	std::cout << num_0 << std::endl;
-	//std::ofstream plant_o;                                      //开始将一个植物卡片的文件地址写入一个txt文件
-	//plant_o.open("plant_name.txt");
-	//for (int i = 0; i < num_use_cards; i++)
-	//{
-	//	for (int j = 0; j < MAX_plant_image; j++)
-	//	{
-	//		plant_o << "PCT/plant/" << i << "/" << j << ".png\n";
-	//	}
-	//}
-	//plant_o.close();                                      //关闭写入
-
-	//std::ifstream plant_i("plant_name.txt");             //开始读取刚刚写完的植物图片文件地址名称
-
-	//for (int i = 0; i < num_use_cards; i++)
-	//{
-	//	for (int j = 0; j <= MAX_plant_image; j++)
-	//	{
-	//		plant_i.getline(save_name, 62);
-
-	//		std::ifstream test_open(save_name);                     //判断文件是否存在(本来是想写一个判断有几个图片的函数的，但没想到直接这么写
-	//		if (test_open.good())                                    //能少写三个函数(一个算有几个图片的、一个函数当前要加载的植物的序号告诉这个函
-	//		{													//数(这不算一个函数)、一个函数将这个函数运行好几次直到全部植物都运行过了）
-	//			num_of_plant_image[i] += 1;
-	//			loadimage(&plant_cards[i][j], save_name);
-	//		}
-	//	}
-	//}
-	//plant_i.close();
-
 
 
 
