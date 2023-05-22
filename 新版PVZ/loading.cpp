@@ -251,8 +251,7 @@ void Put_image()
 					count[i][j]++;
 					if (count[i][j] % p_speecd == 0)                                        //每200次循环更换一张植物照片从而达到缓慢运动的效果
                     {                                                                  //但是不知道是否换个电脑速度就会有所改变
-						note_plant[i][j]++;
-						                                                                                                                            //std::cout << count[i][j] << std::endl;                      //测试时是大功臣，测试完兔死狗烹
+						note_plant[i][j]++;						                                                                                                                            //std::cout << count[i][j] << std::endl;                      //测试时是大功臣，测试完兔死狗烹
 					}
 				}
 				else
@@ -273,6 +272,10 @@ void Put_image()
 	{
 		newPNG(NULL, point.x - 20, point.y - 50, &shovel, BLACK);                    //铲子跟着鼠标走
 	}
+
+
+
+
 
 	EndBatchDraw();         //结束批量绘图模式，将中间的图片一次性绘制出来                //结束双缓冲，把内存中的内容一次性打印到屏幕上去
 }
