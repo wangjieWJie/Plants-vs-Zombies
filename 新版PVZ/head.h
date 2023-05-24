@@ -32,6 +32,7 @@
 #include<fstream>
 #include<graphics.h>
 #include<cstring>
+#include<windows.h>
 
 using std::string;
 

@@ -1,15 +1,22 @@
 #include"head.h"
 
+                    
 
 
 int main()
 {
+	//设置好随机数工具
+	unsigned seed;
+	seed = time(0);
+	srand(seed);
+
+
 	Initmap();          // 初始化一个关卡地图界面
 	load_cards();
 	load_plants();
 
 	my_load(easy_zoom_go3,"PCT/zoom/go_3/");    //将一个普通僵尸的第三种走路姿势加载到内存中
-	my_load(easy_zoom_wait2,"PCT/zoom/wait_2/");
+	my_load(easy_zoom_wait2,"PCT/zoom/wait_2/");   //将一个普通僵尸的第二种等待姿势加载进来
 
 
 

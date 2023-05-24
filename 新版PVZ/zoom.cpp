@@ -10,6 +10,9 @@ IMAGE easy_zoom_wait2[25]{};
 
 
 
+
+
+
 void my_load(IMAGE get_in[], string load_name)
 {
 	int num_0 = num_a_cards(load_name);                      //计算一个植物的动态照片能有几张
