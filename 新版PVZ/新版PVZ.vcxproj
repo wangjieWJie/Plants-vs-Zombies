@@ -128,6 +128,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="action.cpp" />
     <ClCompile Include="loading.cpp" />
     <ClCompile Include="head.h" />
     <ClCompile Include="main.cpp" />

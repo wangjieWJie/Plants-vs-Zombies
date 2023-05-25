@@ -26,7 +26,8 @@
 将全局变量的定义挪到了头文件中
 实现了接受一个文件夹地址名然后将这个文件夹里的图片加载到内存中的函数
 并成功将一个普通僵尸的第三种走路姿势加载到了内存中
-
+将阳关的图片加载了进来
+随机从天而降阳光
 */
 #include<iostream>
 #include<fstream>
@@ -65,7 +66,7 @@ void newPNG(IMAGE* dstimg, int x, int y, IMAGE* srcimg, UINT transparentcolor); 
 
 extern IMAGE easy_zoom_go3[19];             //使用extern报错是因为使用了{}进行了多次初始化
 extern IMAGE easy_zoom_wait2[25];
-
+extern IMAGE p_sunshine[29];
 
 
 

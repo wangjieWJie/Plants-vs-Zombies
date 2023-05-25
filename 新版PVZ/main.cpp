@@ -17,7 +17,7 @@ int main()
 
 	my_load(easy_zoom_go3,"PCT/zoom/go_3/");    //将一个普通僵尸的第三种走路姿势加载到内存中
 	my_load(easy_zoom_wait2,"PCT/zoom/wait_2/");   //将一个普通僵尸的第二种等待姿势加载进来
-
+	my_load(p_sunshine, "PCT/sunshine/");         //加载阳光图片
 
 
 
