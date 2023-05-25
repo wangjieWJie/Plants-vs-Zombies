@@ -24,6 +24,7 @@ int main()
 
 	while(1)
 	{
+		random_sun();
 
 		click_act();
 //		update_windows();

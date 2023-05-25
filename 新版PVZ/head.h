@@ -51,6 +51,7 @@ void my_load(IMAGE get_in[],string load_name);          //接收一个文件夹名称，然
 int num_a_cards(string load_name);       //计算文件夹中有多少个图片
 int wei_shu(int  a);                     //计算一个整数有几位数
 string turn_int_into_char(int a);        //将一个整数转化为字符串类型
+void random_sun();                       //随即从天而降阳光
 
 
 
@@ -67,6 +68,7 @@ void newPNG(IMAGE* dstimg, int x, int y, IMAGE* srcimg, UINT transparentcolor); 
 extern IMAGE easy_zoom_go3[19];             //使用extern报错是因为使用了{}进行了多次初始化
 extern IMAGE easy_zoom_wait2[25];
 extern IMAGE p_sunshine[29];
-
-
+extern int rd_x;
+extern int rd_y;
+extern int count2;
 
