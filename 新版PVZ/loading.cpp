@@ -42,8 +42,6 @@ int count[ROW][COL]{};          //计数器
 IMAGE bin_go{};                //豆子子弹
 IMAGE bin_break{};             //豆子破碎
 
-int count3{};                 //计数器
-
 void Initmap()
 {
 	initgraph(1080, 675, 1);    //创建游戏（图形）窗口
@@ -275,16 +273,10 @@ void Put_image()
 	}
 
 
-	if (count2 > 5000)
-	{
-		newPNG(NULL, rd_x, rd_y, &p_sunshine[count3 % 28], BLACK);
-	}
-
+	random_sun();
 
 
 	EndBatchDraw();         //结束批量绘图模式，将中间的图片一次性绘制出来                //结束双缓冲，把内存中的内容一次性打印到屏幕上去
-	count3++;
-	count3 = count3 > 10000 ? 0 : count3;
 }
 
 
@@ -301,6 +293,7 @@ void Put_image()
 //
 //void update_windows()
 //{
+// rd_x  new
 //	BeginBatchDraw();
 //	EndBatchDraw();
 //}

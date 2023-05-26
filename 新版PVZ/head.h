@@ -23,11 +23,11 @@
 想的比较理想化，想都做成函数，因为以后要添加的东西实在是太多了
 用good()函数做了可以计算某个图片文件最多有多少张的函数
 其中包含一个计算整数位数和将整数转化为字符串的的函数
-将全局变量的定义挪到了头文件中
 实现了接受一个文件夹地址名然后将这个文件夹里的图片加载到内存中的函数
 并成功将一个普通僵尸的第三种走路姿势加载到了内存中
 将阳关的图片加载了进来
 随机从天而降阳光
+发现putImage函数太长了，太复杂，所以以后写成函数块，加进去
 */
 #include<iostream>
 #include<fstream>
@@ -61,14 +61,9 @@ void newPNG(IMAGE* dstimg, int x, int y, IMAGE* srcimg, UINT transparentcolor); 
 
 
 
-//因为源文件不可能只有一个，所以把他们挪到头文件里来了
-//移动完不能用，还是用声名吧
 
-
-extern IMAGE easy_zoom_go3[19];             //使用extern报错是因为使用了{}进行了多次初始化
+extern IMAGE easy_zoom_go3[19];             //使用extern报错是因为使用了{}进行了初始化
 extern IMAGE easy_zoom_wait2[25];
 extern IMAGE p_sunshine[29];
-extern int rd_x;
-extern int rd_y;
-extern int count2;
+extern IMAGE sun[24];
 
