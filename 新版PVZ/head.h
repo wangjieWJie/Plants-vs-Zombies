@@ -28,6 +28,13 @@
 将阳关的图片加载了进来
 随机从天而降阳光
 发现putImage函数太长了，太复杂，所以以后写成函数块，加进去
+在左键按下的动作中添加了点击到随机下落的阳光之后的反应
+阳光消失，并获得25阳光币       但是没有将阳光收入到bar中的动画，略显生草。
+欲增加一个接受  速度、起始位置、和图片数组 参数的函数，然后将这一组图片顺序地从起点按照速度显示到终点
+初始阳光值设置为100
+增加了文本打印功能，将阳光币的值可视化的显示出了
+提供了每个植物的花费，在种植植物后能够扣除阳光币
+
 */
 #include<iostream>
 #include<fstream>
@@ -51,7 +58,8 @@ void my_load(IMAGE get_in[],string load_name);          //接收一个文件夹名称，然
 int num_a_cards(string load_name);       //计算文件夹中有多少个图片
 int wei_shu(int  a);                     //计算一个整数有几位数
 string turn_int_into_char(int a);        //将一个整数转化为字符串类型
-void random_sun();                       //随即从天而降阳光
+void random_sun();                       //随机从天而降阳光
+void put_text();                          //输出文本文字
 
 
 
@@ -66,4 +74,10 @@ extern IMAGE easy_zoom_go3[19];             //使用extern报错是因为使用了{}进行了
 extern IMAGE easy_zoom_wait2[25];
 extern IMAGE p_sunshine[29];
 extern IMAGE sun[24];
+extern int count2;              //计数器
 
+extern unsigned int your_sunshine;
+extern int scores;
+extern int rdom_x;               //随机的阳光的x坐标
+extern int rdom_y;               //随机的阳光的y坐标
+extern float mov_y;           //阳光的起始位置以及以后的运动轨迹

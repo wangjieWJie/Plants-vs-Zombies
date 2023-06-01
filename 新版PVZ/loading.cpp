@@ -42,6 +42,8 @@ int count[ROW][COL]{};          //计数器
 IMAGE bin_go{};                //豆子子弹
 IMAGE bin_break{};             //豆子破碎
 
+int value_plant[num_use_cards] = { 100,50 };  //定义每个植物的花费
+
 void Initmap()
 {
 	initgraph(1080, 675, 1);    //创建游戏（图形）窗口
@@ -123,15 +125,28 @@ void click_act()
 		if (point.message == WM_LBUTTONDOWN)     //如果获得了一个鼠标左键按下的消息
 		{
 			//std::cout << "左点" << std::endl;
-			if (point.x >= 358 && point.x <= 770 && point.y >= 8 && point.y <= 70)
+			if (point.x >= 358 && point.x <= 770 && point.y >= 8 && point.y <= 70)      //根据卡牌选择植物
 			{
 				curPlant = (point.x - 356) / 47;
 				std::cout << curPlant << std::endl;
+				if (value_plant[curPlant] > your_sunshine)                //判断是否有足够的阳光来种植这个植物
+				{
+					curPlant = -1;
+				}
 			}
+
+
 			else if (point.x > 830 && point.x < 830 + 59 && point.y>20 && point.y < 20 + 90)      //召唤铲子
 			{
 				curPlant = -2;
 				std::cout << "铲子来了" << std::endl;
+			}
+
+			if (point.x >= rdom_x && point.y <= rdom_x + 78 && point.y >= mov_y && point.y <= mov_y + 78)   //点击随下落的阳光
+			{
+				count2 = 0;
+				mov_y = -75;
+				your_sunshine += 25;
 			}
 		}
 		//2222222222222222222222222222222222222222222222222222222222222222222222222222222
@@ -202,12 +217,17 @@ void click_act()
 					note_x[pl.y][pl.x] = p_mid_x;
 					note_y[pl.y][pl.x] = p_mid_y;
 
+					your_sunshine -= value_plant[curPlant];           //扣除对应阳光币
+
+
 					//newPNG(NULL, p_mid_x, p_mid_y, &plant_cards[curPlant][0], BLACK);    
 					curPlant = -1;
 					pl.x = -1;
 					pl.y = -1;
+
+
 				}
-				else if (curPlant < -1) 
+				else if (curPlant < -1)                      //使用铲子
 				{
 					note_plant[pl.y][pl.x] = NULL;           //将这个坑位的植物消除     
 					note[pl.y][pl.x] = 0;                    //标志着这个坑位已经没有植物了           
@@ -230,14 +250,14 @@ void Put_image()
 	BeginBatchDraw();		//批量绘图 暂不输出           //开始缓冲，即把下面的内容先不显示在屏幕上，而是先缓存在内存中
 	putimage(-80, 0, &map);
 	putimage(280, 0, &Bar);
-	for (int i = 0; i < num_use_cards; i++)
+	for (int i = 0; i < num_use_cards; i++)           //输出植物卡片图片
 	{
 		putimage(358 + 50 * i, 8, &cards[i]);
 	}
 	newPNG(NULL, 830, 20, &shovel, BLACK);
 
 
-	for (int i = 0; i < ROW; i++)
+	for (int i = 0; i < ROW; i++)                  //输出动态植物形象
 	{
 		for (int j = 0; j < COL; j++)
 		{
@@ -276,9 +296,21 @@ void Put_image()
 	random_sun();
 
 
+	put_text();
 	EndBatchDraw();         //结束批量绘图模式，将中间的图片一次性绘制出来                //结束双缓冲，把内存中的内容一次性打印到屏幕上去
 }
 
+
+void put_text()           //输出文本文字
+{
+
+	setbkmode(TRANSPARENT);           //显示透明文字
+	settextcolor(BLACK);              //设置字体颜色为黑色
+	settextstyle(18, 0, "华文行楷");  //设置字体的高、宽（字符的平均宽度.如果为 0,则比例自适应)和字体
+	string yourSunshine_ = turn_int_into_char(your_sunshine);        //将一个整数转化为字符串类型
+	outtextxy(307, 58, yourSunshine_.c_str());         //输出文字           （使用string类中的 c_str()方法将string类型转化成 char* 类型）
+
+}
 
 
 //

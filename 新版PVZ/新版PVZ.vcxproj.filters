@@ -33,5 +33,8 @@
     <ClCompile Include="action.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="plants.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

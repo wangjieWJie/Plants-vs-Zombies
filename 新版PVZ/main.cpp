@@ -1,6 +1,7 @@
 #include"head.h"
 
-                    
+unsigned int your_sunshine = 100;
+int scores{};
 
 
 int main()
@@ -26,9 +27,7 @@ int main()
 		random_sun();
 
 		click_act();
-//		update_windows();
 	    Put_image();
-
 
 	}
 	std::cin.get();       //大佬用的 getch 我不会用，就整个这个用吧，大佬说这样更好
