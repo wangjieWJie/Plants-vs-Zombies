@@ -43,7 +43,8 @@ IMAGE bin_go{};                //豆子子弹
 IMAGE bin_break{};             //豆子破碎
 
 int value_plant[num_use_cards] = { 100,50 };  //定义每个植物的花费
-
+int note_sunshine = 0;     //标记现在已经点击到了阳光了，应该让这个阳光从这个位置向（300，10）这个位置运动了
+int note_mov_y{};         //将现在的y坐标记录下来，方便一会儿使用
 void Initmap()
 {
 	initgraph(1080, 675, 1);    //创建游戏（图形）窗口
@@ -144,9 +145,11 @@ void click_act()
 
 			if (point.x >= rdom_x && point.y <= rdom_x + 78 && point.y >= mov_y && point.y <= mov_y + 78)   //点击随下落的阳光
 			{
-				count2 = 0;
 				mov_y = -75;
 				your_sunshine += 25;
+
+				note_mov_y = mov_y;
+				note_sunshine = 25;              //标记现在已经点击到了阳光了，应该让这个阳光从这个位置向（300，10）这个位置运动了
 			}
 		}
 		//2222222222222222222222222222222222222222222222222222222222222222222222222222222
@@ -295,7 +298,7 @@ void Put_image()
 
 	random_sun();
 
-
+	move_it(500, 66, rdom_x, note_mov_y, 300, 10, p_sunshine, 29, &note_sunshine);
 	put_text();
 	EndBatchDraw();         //结束批量绘图模式，将中间的图片一次性绘制出来                //结束双缓冲，把内存中的内容一次性打印到屏幕上去
 }

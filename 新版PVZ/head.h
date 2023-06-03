@@ -25,12 +25,16 @@
 其中包含一个计算整数位数和将整数转化为字符串的的函数
 实现了接受一个文件夹地址名然后将这个文件夹里的图片加载到内存中的函数
 并成功将一个普通僵尸的第三种走路姿势加载到了内存中
+over
+下面是动作函数：
 将阳关的图片加载了进来
 随机从天而降阳光
 发现putImage函数太长了，太复杂，所以以后写成函数块，加进去
 在左键按下的动作中添加了点击到随机下落的阳光之后的反应
 阳光消失，并获得25阳光币       但是没有将阳光收入到bar中的动画，略显生草。
 欲增加一个接受  速度、起始位置、和图片数组 参数的函数，然后将这一组图片顺序地从起点按照速度显示到终点
+over
+将僵尸函数里面的所有函数移动到了动作函数里面
 初始阳光值设置为100
 增加了文本打印功能，将阳光币的值可视化的显示出了
 提供了每个植物的花费，在种植植物后能够扣除阳光币
@@ -61,13 +65,13 @@ string turn_int_into_char(int a);        //将一个整数转化为字符串类型
 void random_sun();                       //随机从天而降阳光
 void put_text();                          //输出文本文字
 
-
+void move_it(int speece, int Npart, int pl_startX, int pl_startY, int pl_endX, int pl_endY, IMAGE img_object[], int img_num, int* note);
+void move_it(int speece, int pl_startX, int pl_startY, int pl_endX, int pl_endY, IMAGE img_object);
+void move_it(int speece, int Npart, int pl_startX, int pl_startY, int pl_endX, int pl_endY, IMAGE img_object[], int img_num);
 
 
 //其他一些工具
 void newPNG(IMAGE* dstimg, int x, int y, IMAGE* srcimg, UINT transparentcolor);     //透明化PNG贴图
-
-
 
 
 extern IMAGE easy_zoom_go3[19];             //使用extern报错是因为使用了{}进行了初始化
@@ -81,3 +85,4 @@ extern int scores;
 extern int rdom_x;               //随机的阳光的x坐标
 extern int rdom_y;               //随机的阳光的y坐标
 extern float mov_y;           //阳光的起始位置以及以后的运动轨迹
+extern int note_sunshine;       //标记，表示阳光已经消失了，应该结束上一步的动作，并进行下一步动作
